@@ -1,0 +1,7 @@
+TEAM_ID=
+
+PRODUCT_NAME=KtorClientMultiplataforma
+PRODUCT_BUNDLE_IDENTIFIER=br.edut.utfpr.KtorClientMultiplataforma$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
