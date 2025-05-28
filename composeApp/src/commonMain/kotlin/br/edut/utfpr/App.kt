@@ -1,13 +1,9 @@
 package br.edut.utfpr
 
+import QuoteServiceKtor
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,16 +12,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import br.edut.utfpr.quote.MockQuote
+
 import br.edut.utfpr.quote.QuoteScreen
 import br.edut.utfpr.quote.QuoteState
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
-import ktorclientmultiplataforma.composeapp.generated.resources.Res
-import ktorclientmultiplataforma.composeapp.generated.resources.compose_multiplatform
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
@@ -35,17 +27,18 @@ fun App() {
 
     LaunchedEffect(Unit) {
         scope.launch {
-            delay(2000L)
-            val success = true
-            state = if (success) {
-                QuoteState.Success(MockQuote.sampleQuote)
-            } else {
-                QuoteState.Error("Failed to load quote.")
+            try {
+                val quotesK = QuoteServiceKtor()
+                val quote = quotesK.getRandomQuote()
+
+                state = QuoteState.Success(quote)
+
+            } catch (e: Exception) {
+                state = QuoteState.Error("Failed to load quote: ${e.message}")
             }
         }
     }
-
-   MaterialTheme {
+    MaterialTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = Color(0xFFF5F5F5)
@@ -71,5 +64,3 @@ fun App() {
         }
     }
 }
-
-

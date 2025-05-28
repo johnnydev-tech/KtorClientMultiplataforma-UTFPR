@@ -1,4 +1,6 @@
-package br.edut.utfpr.quote
+package br.edut.utfpr.quote.data
+
+import br.edut.utfpr.quote.models.Quote
 
 object MockQuote {
 

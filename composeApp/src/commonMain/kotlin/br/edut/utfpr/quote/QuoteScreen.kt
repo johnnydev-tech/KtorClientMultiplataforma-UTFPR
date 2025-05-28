@@ -16,6 +16,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.edut.utfpr.quote.data.MockQuote
+import br.edut.utfpr.quote.models.Quote
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
